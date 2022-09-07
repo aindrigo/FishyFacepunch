@@ -1,3 +1,6 @@
+2.1.0
+	- Fixed ClientId 32767 not found error when being used with Multipass.
+
 2.0.0
 	- FishNetworking 2.0.0 support.
 
