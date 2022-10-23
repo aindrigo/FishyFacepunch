@@ -9,6 +9,11 @@ namespace FishyFacepunch
 {
     public class FishyFacepunch : Transport
     {
+        ~FishyFacepunch()
+        {
+            Shutdown();
+        }
+
         #region Public.
         [System.NonSerialized]
         public ulong LocalUserSteamID;
@@ -131,7 +136,7 @@ namespace FishyFacepunch
             SteamNetworkingUtils.InitRelayNetworkAccess();
             LocalUserSteamID = Steamworks.SteamClient.SteamId.Value;
 #endif
-        } 
+        }
         #endregion
 
         #region ConnectionStates.
