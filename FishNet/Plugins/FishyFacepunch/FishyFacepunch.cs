@@ -95,7 +95,11 @@ namespace FishyFacepunch
             CreateChannelData();
 
 #if !UNITY_SERVER
-            SteamClient.Init(_steamAppID, true);
+            if (!SteamClient.IsValid) //Steam might have already been initialized by something else
+            {
+                SteamClient.Init(_steamAppID, true);
+            }
+
             SteamNetworking.AllowP2PPacketRelay(true);
 #endif
             _clientHost.Initialize(this);
