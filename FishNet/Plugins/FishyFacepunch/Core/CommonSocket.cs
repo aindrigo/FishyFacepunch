@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Runtime.InteropServices;
+using FishNet.Managing;
 using UnityEngine;
 
 namespace FishyFacepunch
@@ -150,8 +151,7 @@ namespace FishyFacepunch
             Result result = conn.SendMessage(pData, segment.Count, sendFlag);
             if (result != Result.OK)
             {
-                if (Transport.NetworkManager.CanLog(LoggingType.Warning))
-                    Debug.LogWarning($"Send issue: {result}");
+                Transport.NetworkManager.LogWarning($"Send issue: {result}");
             }
 
             pinnedArray.Free();
