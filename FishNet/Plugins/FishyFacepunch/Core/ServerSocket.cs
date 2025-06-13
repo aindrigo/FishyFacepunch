@@ -107,11 +107,8 @@ namespace FishyFacepunch.Server
                 _socket = default;
             }
 
-#if UNITY_SERVER
             _socket = SteamNetworkingSockets.CreateNormalSocket<FishySocketManager>(NetAddress.From(address, port));
-#else
-            _socket = SteamNetworkingSockets.CreateRelaySocket<FishySocketManager>();
-#endif
+
             _socket.ForwardMessage = OnMessageReceived;
 
             base.SetLocalConnectionState(LocalConnectionState.Started, true);

@@ -134,10 +134,9 @@ namespace FishyFacepunch
         /// <summary>
         /// Tries to initialize steam network access.
         /// </summary>
-        private void InitializeRelayNetworkAccess()
+        private void InitializeLocalClient()
         {
 #if !UNITY_SERVER
-            SteamNetworkingUtils.InitRelayNetworkAccess();
             LocalUserSteamID = Steamworks.SteamClient.SteamId.Value;
 #endif
         }
@@ -419,7 +418,7 @@ namespace FishyFacepunch
                 Debug.LogError("Server is already running.");
                 return false;
             }
-            InitializeRelayNetworkAccess();
+            InitializeLocalClient();
 
             bool result = _server.StartConnection(_serverBindAddress, _port, _maximumClients);
 
@@ -463,7 +462,7 @@ namespace FishyFacepunch
                 if (_clientHost.GetLocalConnectionState() != LocalConnectionState.Stopped)
                     _clientHost.StopConnection();
                 //Initialize.
-                InitializeRelayNetworkAccess();
+                InitializeLocalClient();
 
                 _client.StartConnection(address, _port);
             }

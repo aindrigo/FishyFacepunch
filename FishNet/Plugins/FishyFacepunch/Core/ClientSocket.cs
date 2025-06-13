@@ -73,8 +73,7 @@ namespace FishyFacepunch.Client
                     connectedComplete = new TaskCompletionSource<Task>();
                     if (!IsValidAddress(address))
                     {
-                        _hostSteamID = UInt64.Parse(address);
-                        HostConnectionManager = SteamNetworkingSockets.ConnectRelay<FishyConnectionManager>(_hostSteamID);
+                        throw new System.InvalidOperationException("Invalid address provided");
                     }
                     else
                     {
